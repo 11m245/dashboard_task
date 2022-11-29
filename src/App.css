@@ -6,7 +6,6 @@ body {
 
 * {
   margin: 0;
-
 }
 
 .summary-box-container {
@@ -18,7 +17,8 @@ body {
   color: hsl(218deg 19% 43%);
 }
 
-.summary-box-number {
+.summary-box-number,
+.profit-box-number {
   margin: 10px 0;
 }
 
@@ -27,7 +27,8 @@ body {
 }
 
 
-.summary-box-spec {
+.summary-box-spec,
+.profit-box-time-container {
   display: flex;
   justify-content: space-between;
 }
@@ -43,6 +44,30 @@ body {
   grid-template-columns: 1fr;
   gap: 1rem;
 }
+
+
+.profit-box-sub-text {
+  color: hsl(214deg 17% 66%);
+  font-size: 0.9rem;
+}
+
+.profit-box-time-container>p:first-child {
+  color: hsl(214deg 17% 66%);
+}
+
+.profit-box-time-container {
+  margin: 10px 0 5px 0;
+}
+
+.monthly-profits-container {
+  max-width: 500px;
+  margin-top: 2rem;
+  background-color: hsl(0deg 0% 100%);
+}
+
+
+/* mediaqueries */
+
 
 @media screen and (min-width:500px) {
   .summary-box-list {
