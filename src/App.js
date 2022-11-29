@@ -1,7 +1,8 @@
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp, faCaretDown, faChartLine, faCoins, faDollar, faSignal } from '@fortawesome/free-solid-svg-icons'
-import LinearProgress from '@mui/material/LinearProgress';
+import { styled } from '@mui/material/styles';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 function App() {
   return (
     <div className="App">
@@ -31,7 +32,8 @@ function SummaryBoxList() {
       time: "Last Month",
       iconColor: "rgb(135, 96, 251)",
       performance: "up",
-      type: "count"
+      type: "count",
+      linePercent: 20
     },
     {
       number: "12,897",
@@ -41,7 +43,8 @@ function SummaryBoxList() {
       time: "Last Month",
       iconColor: "#eb6f33",
       performance: "down",
-      type: "money"
+      type: "money",
+      linePercent: 50
     },
     {
       number: "11,234",
@@ -51,7 +54,8 @@ function SummaryBoxList() {
       time: "Last Month",
       iconColor: "#03c895",
       performance: "down",
-      type: "money"
+      type: "money",
+      linePercent: 70
     },
     {
       number: "789",
@@ -61,7 +65,8 @@ function SummaryBoxList() {
       time: "Last Month",
       iconColor: "#01b8ff",
       performance: "up",
-      type: "money"
+      type: "money",
+      linePercent: 40
     }
   ];
 
@@ -82,7 +87,7 @@ function SummaryBox({ data }) {
         <FontAwesomeIcon style={{ color: data.iconColor }} icon={data.icon} />
       </div>
       <h2 className="summary-box-number">{data.type === "money" ? "$" : null}{data.number}</h2>
-      <LinearProgress color="secondary" variant="determinate" value={50} />
+      <CustomLinearProgress lineColor={data.iconColor} variant="determinate" value={data.linePercent} />
       <div className="summary-box-time-container">
         <p className="time">{data.time}</p>
         <p className="percent">
@@ -91,6 +96,39 @@ function SummaryBox({ data }) {
       </div>
     </div>
   );
+}
+
+
+const CustomLinearProgress = styled(LinearProgress)(({ theme, lineColor }) => ({
+  height: 6,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: "hsl(221deg 36% 91%)",
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    backgroundColor: lineColor,
+  },
+}));
+
+
+function MonthlyProfits() {
+
+  const dataList = [{ time: "This Month", lineColor: "purple", percent: 75 }, { time: "Last Month", lineColor: "green", percent: 50 }];
+
+  return (
+    <div className="monthly-profits">
+      <h3>Monthly Profits</h3>
+      <p>Excepteur sint occaecat cupidatat non proident</p>
+      <h2>$22,534</h2>
+      {dataList.map(((dt) => <PersonProgress data={dt} />))}
+    </div>
+  );
+}
+
+function PersonProgress({ data }) {
+
+  return (<div>
+
+  </div>);
 }
 
 export default App;
