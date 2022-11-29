@@ -17,6 +17,7 @@ function Dashboard() {
     <div>
       <h1>Welcome to Dashboard</h1>
       <SummaryBoxList />
+      <MonthlyProfits />
     </div>
   );
 }
@@ -112,22 +113,27 @@ const CustomLinearProgress = styled(LinearProgress)(({ theme, lineColor }) => ({
 
 function MonthlyProfits() {
 
-  const dataList = [{ time: "This Month", lineColor: "purple", percent: 75 }, { time: "Last Month", lineColor: "green", percent: 50 }];
+  const dataList = [{ time: "This Month", lineColor: "purple", percent: 75 },
+  { time: "Last Month", lineColor: "green", percent: 50 }];
 
   return (
-    <div className="monthly-profits">
+    <div className="monthly-profits-container">
       <h3>Monthly Profits</h3>
-      <p>Excepteur sint occaecat cupidatat non proident</p>
-      <h2>$22,534</h2>
-      {dataList.map(((dt) => <PersonProgress data={dt} />))}
+      <p className='profit-box-sub-text'>Excepteur sint occaecat cupidatat non proident</p>
+      <h2 className="profit-box-number">$22,534</h2>
+      {dataList.map(((dt) => <PercentProgress data={dt} />))}
     </div>
   );
 }
 
-function PersonProgress({ data }) {
-
-  return (<div>
-
+function PercentProgress({ data }) {
+  console.log(data);
+  return (<div className='profit-box-container'>
+    <div className="profit-box-time-container">
+      <p>{data.time}</p>
+      <p>{data.percent}%</p>
+    </div>
+    <CustomLinearProgress lineColor={data.lineColor} variant="determinate" value={data.percent} />
   </div>);
 }
 
